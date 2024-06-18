@@ -78,7 +78,9 @@ app.component('product-display', {
                 
             </div>
 
-        </div>`,
+        </div>
+        <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+        <review-form @review-submitted="addReview"></review-form>`,
     data() {
         return {
             product: 'Socks',
@@ -90,6 +92,7 @@ app.component('product-display', {
                 { id: 2, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 0 },
             ],
             cart: 0,
+            reviews: []
         };
     },
     methods: {
@@ -104,6 +107,9 @@ app.component('product-display', {
         updateVariant(index) {
             this.selectedVariant = index;
         },
+        addReview(review) {
+            this.reviews.push(review)
+        }
 
 
     },
